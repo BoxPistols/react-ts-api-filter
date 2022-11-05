@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { LegacyRef, useEffect, useRef, useState } from "react";
 import "asagiri";
 import "./styles.css";
 
@@ -11,7 +11,8 @@ export default function App() {
       })
       .then((data) => setUsers(data));
   }, []);
-  console.log(users);
+  // console.log(users);
+
   /**
    * id: 1
    * name: "Leanne Graham"
@@ -22,12 +23,24 @@ export default function App() {
    * website: "hildegard.org"
    * company: Object
    */
+  type NewType = LegacyRef<any> | undefined;
+  const ref: NewType = useRef();
+  // console.log(ref);
+
+  const handleSearch = () => {
+    console.log(ref.current.value);
+  };
 
   return (
     <div className="App">
       <h1>Search App</h1>
       <label>Input</label>
-      <input type="text" placeholder="...input" />
+      <input
+        type="text"
+        placeholder="...input"
+        ref={ref}
+        onChange={() => handleSearch()}
+      />
       {/* content */}
       <div className="content">
         <div className="section ">
