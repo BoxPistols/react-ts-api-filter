@@ -4,7 +4,11 @@ import "./styles.css";
 
 export default function App() {
   const [users, setUsers] = useState([]);
-  const [searchQuery, setSearchQuery] = useState([users]);
+  const [searchQuery, setSearchQuery] = useState([...users]);
+
+  type NewType = LegacyRef<any> | undefined;
+  const ref: NewType = useRef();
+  // console.log(ref);
 
   // const SearchQuery
   useEffect(() => {
@@ -15,10 +19,6 @@ export default function App() {
       .then((data) => setUsers(data));
   }, []);
   // console.log(users);
-
-  type NewType = LegacyRef<any> | undefined;
-  const ref: NewType = useRef();
-  // console.log(ref);
 
   const handleSearch = () => {
     console.log(ref.current.value);
