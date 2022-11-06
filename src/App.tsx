@@ -30,10 +30,6 @@ export default function App() {
     );
   };
 
-  // filter
-  // const handleSearch = () => {
-  // };
-
   return (
     <div className="App">
       <h1>Search App</h1>
@@ -59,6 +55,10 @@ export default function App() {
     </div>
   );
 }
+
+/**
+ * 1- https://www.youtube.com/watch?v=q_VgmKym5_A&ab_channel=プログラミングチュートリアル
+ */
 
 /**
  * id: 1
