@@ -1,24 +1,24 @@
-import { LegacyRef, useEffect, useRef, useState } from "react";
-import "asagiri";
-import "./styles.css";
+import { LegacyRef, useEffect, useRef, useState } from 'react';
+import 'asagiri';
+import './styles.css';
 
 export default function App() {
   const [users, setUsers] = useState([]);
-  const [searchQuery, setSearchQuery] = useState([users]);
+  const [searchQuery, setSearchQuery] = useState([...users]);
+
+  type NewType = LegacyRef<any> | undefined;
+  const ref: NewType = useRef();
+  // console.log(ref);
 
   // const SearchQuery
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
+    fetch('https://jsonplaceholder.typicode.com/users')
       .then((res) => {
         return res.json();
       })
       .then((data) => setUsers(data));
   }, []);
   // console.log(users);
-
-  type NewType = LegacyRef<any> | undefined;
-  const ref: NewType = useRef();
-  // console.log(ref);
 
   const handleSearch = () => {
     console.log(ref.current.value);
@@ -30,26 +30,22 @@ export default function App() {
     );
   };
 
-  // filter
-  // const handleSearch = () => {
-  // };
-
   return (
-    <div className="App">
+    <div className='App'>
       <h1>Search App</h1>
       <label>Input</label>
       <input
-        type="text"
-        placeholder="...input"
+        type='text'
+        placeholder='...input'
         ref={ref}
         onChange={() => handleSearch()}
       />
       {/* content */}
-      <div className="content">
-        <div className="section ">
+      <div className='content'>
+        <div className='section '>
           {/* {(searchQuery.length <= 0 ? users : searchQuery).map( */}
           {searchQuery.map((user, index) => (
-            <div className="box" key={index}>
+            <div className='box' key={index}>
               <h2>{user.name}</h2>
               <p>{user.email}</p>
             </div>
@@ -59,6 +55,10 @@ export default function App() {
     </div>
   );
 }
+
+/**
+ * 1- https://www.youtube.com/watch?v=q_VgmKym5_A&ab_channel=プログラミングチュートリアル
+ */
 
 /**
  * id: 1
