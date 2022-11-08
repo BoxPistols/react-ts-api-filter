@@ -44,12 +44,20 @@ export default function App() {
       <div className="content">
         <div className="section ">
           {/* {(searchQuery.length <= 0 ? users : searchQuery).map( */}
-          {searchQuery.map((user, index) => (
-            <div className="box" key={index}>
-              <h2>{user.name}</h2>
-              <p>{user.email}</p>
-            </div>
-          ))}
+
+          {!ref || searchQuery.length <= 0
+            ? users.map((user, index) => (
+                <div className="box" key={index}>
+                  <h2>{user.name}</h2>
+                  <p>{user.email}</p>
+                </div>
+              ))
+            : searchQuery.map((user, index) => (
+                <div className="box" key={index}>
+                  <h2>{user.name}</h2>
+                  <p>{user.email}</p>
+                </div>
+              ))}
         </div>
       </div>
     </div>
