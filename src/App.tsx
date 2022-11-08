@@ -1,6 +1,6 @@
-import { LegacyRef, useEffect, useRef, useState } from 'react';
-import 'asagiri';
-import './styles.css';
+import { LegacyRef, useEffect, useRef, useState } from "react";
+import "asagiri";
+import "./styles.css";
 
 export default function App() {
   const [users, setUsers] = useState([]);
@@ -12,7 +12,7 @@ export default function App() {
 
   // const SearchQuery
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
+    fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => {
         return res.json();
       })
@@ -31,25 +31,33 @@ export default function App() {
   };
 
   return (
-    <div className='App'>
+    <div className="App">
       <h1>Search App</h1>
       <label>Input</label>
       <input
-        type='text'
-        placeholder='...input'
+        type="text"
+        placeholder="...input"
         ref={ref}
         onChange={() => handleSearch()}
       />
       {/* content */}
-      <div className='content'>
-        <div className='section '>
+      <div className="content">
+        <div className="section ">
           {/* {(searchQuery.length <= 0 ? users : searchQuery).map( */}
-          {searchQuery.map((user, index) => (
-            <div className='box' key={index}>
-              <h2>{user.name}</h2>
-              <p>{user.email}</p>
-            </div>
-          ))}
+
+          {!ref || searchQuery.length <= 0
+            ? users.map((user, index) => (
+                <div className="box" key={index}>
+                  <h2>{user.name}</h2>
+                  <p>{user.email}</p>
+                </div>
+              ))
+            : searchQuery.map((user, index) => (
+                <div className="box" key={index}>
+                  <h2>{user.name}</h2>
+                  <p>{user.email}</p>
+                </div>
+              ))}
         </div>
       </div>
     </div>
